@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Марина Кирина — Аудит человеческого капитала</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-alt: #111111;
+            --text: #f5f5f5;
+            --text-muted: #888888;
+            --accent: #c9a96e;
+            --border: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 48px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #0a0a0a;
+            text-decoration: none;
+            padding: 18px 32px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: clamp(24px, 4vw, 40px);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 48px;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* Problem */
+        .problem-grid {
+            display: grid;
+            gap: 32px;
+        }
+
+        .problem-item {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .problem-item:first-child {
+            border-top: none;
+        }
+
+        .problem-item strong {
+            color: var(--text);
+            font-size: 18px;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        /* Solution */
+        .solution-text {
+            font-size: clamp(18px, 2.5vw, 22px);
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        .solution-text strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Products */
+        .products {
+            display: grid;
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            padding: 40px;
+            transition: border-color 0.3s;
+        }
+
+        .product-card:hover {
+            border-color: var(--accent);
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .product-name {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .product-price {
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .product-result {
+            font-size: 14px;
+            color: var(--text);
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .product-result::before {
+            content: "Результат: ";
+            color: var(--accent);
+        }
+
+        /* Steps */
+        .steps {
+            display: grid;
+            gap: 40px;
+            counter-reset: step;
+        }
+
+        .step {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .step-content h3 {
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .step-content p {
+            margin: 0;
+        }
+
+        /* Guarantee */
+        .guarantee-list {
+            list-style: none;
+        }
+
+        .guarantee-list li {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 18px;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .guarantee-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .guarantee-list li strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Audience */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .audience-item {
+            padding: 24px;
+            border: 1px solid var(--border);
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .audience-item strong {
+            display: block;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 24px;
+        }
+
+        .cta-section p {
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 64px;
+        }
+
+        @media (max-width: 640px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-block h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .footer-block p, .footer-block a {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+        }
+
+        .footer-block a:hover {
+            color: var(--text);
+        }
+
+        .footer-legal {
+            border-top: 1px solid var(--border);
+            padding-top: 32px;
+            font-size: 12px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .footer-legal p {
+            font-size: 12px;
+            color: #555;
+            margin: 0;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: rgba(10,10,10,0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .hero {
+                padding-top: 100px;
+            }
+            .product-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container nav-inner">
+        <a href="#" class="nav-logo">М. Кирина</a>
+        <div class="nav-links">
+            <a href="#problem">Проблема</a>
+            <a href="#solution">Решение</a>
+            <a href="#products">Продукты</a>
+            <a href="#contact">Контакт</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="top">
+    <div class="container">
+        <div class="hero-label">Аудит человеческого капитала</div>
+        <h1>Не нанимайте топ-менеджера, <em>пока я его не увидела</em></h1>
+        <p class="hero-sub">Стресс-ассесмент ключевых лиц. 800&nbsp;000+ собеседований. Вердикт, который нельзя подделать.</p>
+        <a href="https://t.me/more_kastinga" target="_blank" class="btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm3.93 5.42l-1.65 7.77c-.12.55-.45.68-.91.42l-2.52-1.86-1.22 1.17c-.13.14-.25.25-.5.25l.18-2.53 4.67-4.22c.2-.18-.05-.28-.32-.1L5.05 9.72l-2.47-.77c-.54-.17-.55-.54.11-.8l9.66-3.72c.45-.17.84.1.58.99z"/></svg>
+            Написать в Telegram
+        </a>
+    </div>
+</section>
+
+<!-- Problem -->
+<section id="problem">
+    <div class="container">
+        <div class="section-label">Проблема</div>
+        <h2>Ошибка при найме CEO стоит бизнесу десятки миллионов</h2>
+        <div class="problem-grid">
+            <div class="problem-item">
+                <strong>20 000 000 ₽ — средняя стоимость ошибки</strong>
+                В компании с оборотом 500 млн+ промах при выборе CEO или CMO обходится в потерянное время, упущенную прибыль и разрушенную команду.
+            </div>
+            <div class="problem-item">
+                <strong>Тесты DISC и Hogan больше не работают</strong>
+                Кандидаты топ-уровня давно научились выдавать нужный результат. HR видит профиль, а вы получаете подделку под профиль.
+            </div>
+            <div class="problem-item">
+                <strong>Внутренние HR боятся показать правду</strong>
+                Штатные HR-директоры не могут быть независимыми арбитрами. Их вердикт зависит от того, не покажет ли он их собственную некомпетентность.
+            </div>
+            <div class="problem-item">
+                <strong>Собственник платит за «профиль», а получает деструктора</strong>
+                Красивое резюме, отрепетированные ответы и социально желательная мимика скрывают истинные мотивы и скрытые конфликты.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Solution -->
+<section id="solution" style="background: var(--bg-alt);">
+    <div class="container">
+        <div class="section-label">Решение</div>
+        <h2>Я вижу человека в динамике, когда маска срывается</h2>
+        <div class="solution-text">
+            <p><strong>800 000+ собеседований.</strong> От оператора на телефоне до кастинг-директора «Дома-2». От неизвестного актёра до звезды «Молодёжки». Я не читаю резюме — я читаю людей.</p>
+            <p><strong>Метод, который нельзя обойти.</strong> Стресс-вопросы, проективные техники, считывание невербалики в реальном времени. Это не HR-интервью. Это проба, где социальная маска держится секунды, а не часов.</p>
+            <p><strong>Работаю напрямую с собственником.</strong> Независимый внешний арбитр, который скажет правду в лицо. Без команды, без презентаций, без красивых слайдов — только вердикт, основанный на поведении.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Products -->
+<section id="products">
+    <div class="container">
+        <div class="section-label">Продукты</div>
+        <h2>Три формата. От разового аудита до годового партнёрства.</h2>
+        <div class="products">
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-name">Аудит Кандидата</div>
+                    <div class="product-price">Стоимость в личной встрече</div>
+                </div>
+                <div class="product-desc">Глубинное интервью-ассесмент 2–3 финалистов, которых уже отобрал HR-департамент. 2–4 часа на человека. Динамика, невербалика, стресс-вопросы.</div>
+                <div class="product-result">подробная карта совместимости и вердикт — кто потащит проект, кто выгорит через 3 месяца, а кто разрушит команду изнутри.</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-name">Ревизия Команды</div>
+                    <div class="product-price">Стоимость в личной встрече</div>
+                </div>
+                <div class="product-desc">2–3 дня в компании. Экспресс-кастинг всей управляющей команды (CEO, CMO, CFO, HRD). При смене стратегии, кризисе или перед масштабированием.</div>
+                <div class="product-result">карта скрытых конфликтов, саботажников и недооценённых «звёзд», которых нужно срочно повысить, пока они не ушли.</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-name">Годовой ретейнер</div>
+                    <div class="product-price">Стоимость в личной встрече</div>
+                </div>
+                <div class="product-desc">Абонентское обслуживание для инвест-фондов и семейных офисов. Оценка команд стартапов или бизнесов перед покупкой / инвестированием.</div>
+                <div class="product-result">Due Diligence человеческого фактора. Вы знаете, во что вы вкладываете деньги, до подписания контракта.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process -->
+<section style="background: var(--bg-alt);">
+    <div class="container">
+        <div class="section-label">Как это работает</div>
+        <h2>От запроса до вердикта — 4 шага</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>Запрос от собственника</h3>
+                    <p>Без посредников HR. Вы пишете мне напрямую — кого нужно проверить и в какие сроки.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Стресс-ассесмент</h3>
+                    <p>2–4 часа на человека. Проективные техники, внезапные вопросы, считывание микродвижений. Кандидат не знает, что именно я проверяю.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Карта рисков и потенциала</h3>
+                    <p>Письменный вердикт с рекомендациями. Не «подходит / не подходит», а «где взорвётся, где потянет, где нужна подстраховка».</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h3>Закрытый разбор</h3>
+                    <p>Лично с собственником. Без записи, без протокола. Говорю то, что не напишу в документе.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Guarantee -->
+<section>
+    <div class="container">
+        <div class="section-label">Гарантия</div>
+        <h2>Что вы получаете, работая со мной</h2>
+        <ul class="guarantee-list">
+            <li><strong>Вижу то, что не видят тесты и HR-интервью.</strong> Социальные маски, скрытые деструкторы, истинные мотивы — в динамике, а не на бумаге.</li>
+            <li><strong>Вердикт нельзя оспорить.</strong> Он основан на поведении кандидата в стрессе, а не на его словах о себе.</li>
+            <li><strong>Если я ошибаюсь — вы узнаете это до подписания контракта.</strong> А не через полгода, когда команда уже развалена.</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Audience -->
+<section style="background: var(--bg-alt);">
+    <div class="container">
+        <div class="section-label">Для кого</div>
+        <h2>Не для всех. Только для тех, кто принимает решения.</h2>
+        <div class="audience-grid">
+            <div class="audience-item">
+                <strong>Собственники и CEO</strong>
+                Компании с оборотом 500 млн ₽+, где ошибка при найме стоит десятки миллионов.
+            </div>
+            <div class="audience-item">
+                <strong>Инвест-фонды и семейные офисы</strong>
+                Которые вкладывают в бизнесы и хотят знать, во что именно — до сделки.
+            </div>
+            <div class="audience-item">
+                <strong>Позиции C-level</strong>
+                CEO, CMO, CFO, COO, HRD, управляющие партнёры — те, от кого зависит вся компания.
+            </div>
+            <div class="audience-item">
+                <strong>Ситуации «до точки невозврата»</strong>
+                Смена стратегии, кризис, масштабирование, смена CEO — когда нет права на ошибку.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+    <div class="container">
+        <div class="section-label">Первый шаг</div>
+        <h2>Напишите мне в Telegram</h2>
+        <p>Кратко: кого нужно проверить, позиция, срок. Я отвечу в течение 24 часов и предложу ближайшее окно для старта.</p>
+        <div class="cta-buttons">
+            <a href="https://t.me/more_kastinga" target="_blank" class="btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm3.93 5.42l-1.65 7.77c-.12.55-.45.68-.91.42l-2.52-1.86-1.22 1.17c-.13.14-.25.25-.5.25l.18-2.53 4.67-4.22c.2-.18-.05-.28-.32-.1L5.05 9.72l-2.47-.77c-.54-.17-.55-.54.11-.8l9.66-3.72c.45-.17.84.1.58.99z"/></svg>
+                @more_kastinga
+            </a>
+            <a href="https://morekastinga.github.io/agent/" target="_blank" class="btn btn-outline">Для экспертов и публичных личностей</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <h4>Контакты</h4>
+                <a href="https://t.me/more_kastinga" target="_blank">Telegram: @more_kastinga</a>
+                <a href="tel:+79265371844">+7 (926) 537-18-44</a>
+                <a href="mailto:kasting_director@mail.ru">kasting_director@mail.ru</a>
+            </div>
+            <div class="footer-block">
+                <h4>Реквизиты</h4>
+                <p>ИП Кирина Марина Владимировна</p>
+                <p>ИНН 343656034203</p>
+                <p>ОГРНИП 319774600247440</p>
+                <p>г. Москва</p>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <p>© 2026 Марина Кирина. Все права защищены.</p>
+            <p style="margin-top: 8px;"><a href="https://morekastinga.github.io/agent/" style="color: #555; text-decoration: underline;">Для экспертов и публичных личностей</a></p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
